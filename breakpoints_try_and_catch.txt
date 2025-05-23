@@ -1,0 +1,21 @@
+section .text
+global _start
+_start:
+jmp try_block ; Saltamos directamente al bloque TRY
+catch_block:
+; --- Código del CATCH ---
+mov eax, 1
+jmp end_try_catch
+try_block:
+; --- Código del TRY ---
+mov eax, 10
+mov ebx, 0
+cmp ebx, 0
+je catch_block
+div ebx ; División real (solo si EBX no es cero)
+mov ecx, eax ; Si no hubo error, se guarda el resultado en
+ECX
+end_try_catch:
+mov eax, 60
+xor edi, edi
+syscall

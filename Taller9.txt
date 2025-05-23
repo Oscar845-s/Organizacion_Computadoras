@@ -1,0 +1,345 @@
+// Esta programa imprime el valor “A” solamente sumando
+section .data
+    num1 db 15         ; Primera variable (entre 1 y 3)
+    num2 db 2         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “:” solamente sumando
+section .data
+    num1 db 8         ; Primera variable (entre 1 y 3)
+    num2 db 2         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “=” solamente sumando
+section .data
+    num1 db 11         ; Primera variable (entre 1 y 3)
+    num2 db 2         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “?” solamente sumando
+
+section .data
+    num1 db 13         ; Primera variable (entre 1 y 3)
+    num2 db 2         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “_” solamente sumando
+
+section .data
+    num1 db 45         ; Primera variable (entre 1 y 3)
+    num2 db 2         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “B” solamente restando
+
+section .data
+    num1 db 33         ; Primera variable (entre 1 y 3)
+    num2 db 15         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    sub al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “x” solamente restando
+
+section .data
+    num1 db 87         ; Primera variable (entre 1 y 3)
+    num2 db 15         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    sub al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “+” solamente restando
+
+section .data
+    num1 db 10         ; Primera variable (entre 1 y 3)
+    num2 db 15         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    sub al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+
+//Este programa el valor imprime el valor de “`” solamente restando
+
+section .data
+    num1 db 63         ; Primera variable (entre 1 y 3)
+    num2 db 15         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    sub al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+//Este programa el valor imprime el valor de “{” solamente restando
+
+section .data
+    num1 db 90         ; Primera variable (entre 1 y 3)
+    num2 db 15         ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    sub al, [num2]    ; Sumar num2 a AL
+    add al, '0'       ; Convertir el resultado a ASCII
+
+    mov [result], al  ; Guardar el carácter ASCII en 'result'
+
+    ; Imprimir el número (un solo dígito)
+    mov eax, 4        ; syscall: sys_write
+    mov ebx, 1        ; file descriptor: stdout
+    mov ecx, result   ; Dirección del resultado
+    mov edx, 1        ; Longitud del resultado
+    int 0x80          ; Llamada al sistema
+
+    ; Salir del programa
+    mov eax, 1        ; syscall: sys_exit
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema
+
+section .data
+msg db 'Caracter: ', 0xA
+section .bss
+buffer resb 1 ; Espacio para un carácter
+section .text
+global _start
+_start:
+; Mostrar mensaje
+mov eax, 4
+mov ebx, 1
+mov ecx, msg
+mov edx, 10 ; "Caracter: \n"
+
+int 0x80
+; Modo inmediato: cargar directamente el valor ASCII 64 ('@') en AL
+mov al, 64 ; ASCII de '@'
+mov [buffer], al ; Guardar en buffer
+; Imprimir el carácter desde el buffer
+mov eax, 4
+mov ebx, 1
+mov ecx, buffer
+mov edx, 1
+int 0x80
+; Salir del programa
+mov eax, 1
+xor ebx, ebx
+int 0x80
+
+section .data
+msg db 'Caracter: ', 0xA
+char_at db '@' ; El carácter a imprimir
+section .bss
+buffer resb 1
+section .text
+global _start
+_start:
+; Mostrar mensaje
+mov eax, 4
+mov ebx, 1
+mov ecx, msg
+mov edx, 10
+int 0x80
+; Modo indirecto: usar un puntero para acceder a la variable
+lea esi, [char_at] ; Cargar dirección de char_at en ESI
+
+mov al, [esi] ; Acceder al valor de esa dirección (direccionamiento indirecto)
+mov [buffer], al ; Guardar en buffer
+; Imprimir el carácter
+mov eax, 4
+mov ebx, 1
+mov ecx, buffer
+mov edx, 1
+int 0x80
+; Salir
+mov eax, 1
+xor ebx, ebx
+int 0x80

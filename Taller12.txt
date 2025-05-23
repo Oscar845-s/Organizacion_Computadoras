@@ -1,0 +1,154 @@
+FECHA
+section .data
+fecha1 db "21/05/2025", 0 ; Fecha como cadena
+mov al, [fecha1] ; al = '2' (día, decena)
+mov al, [fecha1+1] ; al = '1' (día, unidad)
+mov al, [fecha1+3] ; al = '0' (mes, decena)
+mov al, [fecha1+6] ; al = '2' (año, mil)
+
+CORREO
+correo1 db "usuario123@dominio.com", 0
+mov esi, correo1
+next_char:
+mov al, [esi]
+cmp al, 0
+je fin
+; Aquí puedes validar si es '@' o '.'
+inc esi
+jmp next_char
+
+fin:
+DIRECCION
+calle db "Av. Reforma", 0
+numero db "1234", 0
+colonia db "Centro", 0
+direccion db "Av. Reforma #1234, Centro", 0
+section .data
+direccion db "Av. Reforma", 0, "1234", 0, "Centro", 0
+; Simula tres campos consecutivos
+mov esi, direccion ; Calle
+mov edi, direccion+12 ; Número
+mov ebx, direccion+17 ; Colonia
+CURP
+curp1 db "GARC010101HMCLNS09", 0
+; Primeros 4 caracteres = apellido paterno
+mov esi, curp1
+mov al, [esi] ; 'G'
+mov al, [esi+4] ; Año de nacimiento (posición 4 y 5)
+curps:
+db "GARC010101HMCLNS09", 0
+db "MART990202HDFTRS04", 0
+db "LOPE950303MBCGRL08", 0
+mov esi, curps
+; Segunda CURP:
+add esi, 19 ; Salta la primera CURP (18+1)
+
+section .data
+num1 db 5 ; Declaración del primer número (valor 5)
+num2 db 11 ; Declaración del segundo número (valor 11)
+result db 0 ; Variable para almacenar el resultado de la suma
+message db "Resultado: ", 0 ; Mensaje a mostrar antes del resultado
+section .bss
+buffer resb 4 ; Reserva de 4 bytes para convertir número a cadena (buffer de salida)
+section .text
+
+global _start ; Punto de entrada del programa (para el linker)
+; ---------------------
+; MACRO PARA IMPRIMIR UNA CADENA DE TEXTO
+; ---------------------
+%macro PRINT_STRING 1
+mov eax, 4 ; syscall número 4: sys_write
+mov ebx, 1 ; descriptor de archivo 1: stdout
+mov ecx, %1 ; dirección de la cadena a imprimir
+mov edx, 13 ; longitud del mensaje "Resultado: "
+int 0x80 ; interrupción para ejecutar syscall
+%endmacro
+; ---------------------
+; MACRO PARA IMPRIMIR UN NÚMERO DE UN SOLO DÍGITO EN ASCII
+; ---------------------
+%macro PRINT_NUMBER 1
+mov eax, %1 ; mover el número a EAX
+add eax, '0' ; convertir número a su equivalente ASCII
+mov [buffer], eax ; guardar carácter en el buffer
+mov eax, 4 ; syscall write
+mov ebx, 1 ; descriptor stdout
+mov ecx, buffer ; dirección del carácter convertido
+mov edx, 1 ; longitud a imprimir = 1 byte
+int 0x80 ; llamada al sistema
+%endmacro
+; ---------------------
+; CÓDIGO PRINCIPAL DEL PROGRAMA
+; ---------------------
+_start:
+mov al, [num1] ; Cargar el valor de num1 en AL
+add al, [num2] ; Sumar el valor de num2 al registro AL
+mov [result], al ; Guardar el resultado en la variable result
+PRINT_STRING message ; Imprimir el mensaje "Resultado: "
+PRINT_NUMBER [result] ; Imprimir el resultado convertido a carácter ASCII
+; ------------------
+; Salida del programa correctamente
+; ------------------
+mov eax, 1 ; syscall número 1: sys_exit
+mov ebx, 0 ; código de salida 0
+int 0x80 ; interrupción para terminar el programa
+
+section .data
+message db "La suma de los valores es: ", 0
+newline db 10, 0
+; Estructura de datos simulada: tres valores consecutivos
+numeros db 5, 10, 7 ; num1=5, num2=10, num3=7
+section .bss
+buffer resb 4 ; Buffer para salida del número
+section .text
+global _start
+; -------------------------------
+; MACRO PARA IMPRIMIR CADENA
+; -------------------------------
+%macro PRINT_STRING 1
+mov eax, 4 ; syscall write
+mov ebx, 1 ; stdout
+mov ecx, %1 ; dirección del mensaje
+mov edx, 25 ; longitud del mensaje (ajústala si cambias el texto)
+int 0x80
+%endmacro
+; -------------------------------
+; MACRO PARA IMPRIMIR NÚMERO DE DOS CIFRAS
+; -------------------------------
+%macro PRINT_NUMBER 1
+mov eax, %1 ; mover número a eax
+mov ebx, 0
+mov ecx, 10 ; divisor
+div ecx ; divide eax entre 10 → AL = unidades, AH = decenas
+add ah, '0' ; convertir decenas a ASCII
+mov [buffer], ah
+add al, '0' ; convertir unidades a ASCII
+mov [buffer+1], al
+mov [buffer+2], 10 ; nueva línea opcional
+mov [buffer+3], 0
+mov eax, 4
+mov ebx, 1
+
+mov ecx, buffer
+mov edx, 2 ; solo imprimimos 2 caracteres numéricos
+int 0x80
+%endmacro
+; -------------------------------
+; MACRO PARA SUMAR LOS 3 VALORES
+; -------------------------------
+%macro PRINT_SUM 0
+mov al, [numeros] ; cargar num1
+add al, [numeros+1] ; sumar num2
+add al, [numeros+2] ; sumar num3
+movzx eax, al ; asegurar valor limpio para macro
+PRINT_NUMBER eax ; imprimir resultado
+%endmacro
+; -------------------------------
+; PROGRAMA PRINCIPAL
+; -------------------------------
+_start:
+PRINT_STRING message ; imprime mensaje inicial
+PRINT_SUM ; suma los 3 valores e imprime el resultado
+; Salida del programa
+mov eax, 1
+mov ebx, 0
+int 0x80
